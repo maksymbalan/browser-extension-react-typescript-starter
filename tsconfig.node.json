@@ -5,5 +5,5 @@
     "moduleResolution": "node",
     "resolveJsonModule": true
   },
-  "include": ["vite.config.ts", "./utils/constants.ts", "./src/manifest.ts", "./utils/plugins/make-manifest.ts","./utils/plugins/build-content-script.ts", "package.json", "tools"]
+  "include": ["vite.config.ts", "./src/manifest.ts", "package.json", "tools"]
 }

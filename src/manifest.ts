@@ -1,14 +1,19 @@
+import { defineManifest } from '@crxjs/vite-plugin';
 import { version } from '../package.json';
-import type { Manifest } from 'webextension-polyfill';
 
-const manifest: Manifest.WebExtensionManifest = {
+// NOTE: do not include src/ in paths,
+// vite root folder: src, public folder: public (based on the project root)
+// @see ../vite.config.ts#L16
+
+const manifest = defineManifest(async (env) => ({
   manifest_version: 3,
-  name: 'Browser Extension TypeScript & React Starter',
-  version,
+  name: `${env.mode === 'development' ? '[Dev] ' : ''}Browser Extension TypeScript & React Starter`,
   description: 'Browser Extension, TypeScript, React',
+  version,
   background: {
-    service_worker: 'background/index.js',
+    service_worker: 'background/index.ts',
   },
+
   host_permissions: ['<all_urls>'],
   options_ui: {
     page: 'options/options.html',
@@ -39,6 +44,6 @@ const manifest: Manifest.WebExtensionManifest = {
     '128': 'images/extension_128.png',
   },
   permissions: ['storage', 'tabs'],
-};
+}));
 
 export default manifest;

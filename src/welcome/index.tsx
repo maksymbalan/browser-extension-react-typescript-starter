@@ -6,7 +6,6 @@ import { Provider } from 'react-redux';
 import { twind, config, cssom, observe } from './twind';
 import { proxyStore } from '../app/proxyStore';
 import Content from './Content';
-import store from '../app/store';
 
 proxyStore.ready().then(() => {
   const contentRoot = document.createElement('div');
@@ -26,12 +25,10 @@ proxyStore.ready().then(() => {
   observe(tw, shadowRoot);
 
   createRoot(shadowWrapper).render(
-    <React.StrictMode >
+    <React.StrictMode>
       <Provider store={proxyStore}>
         <Content />
       </Provider>
     </React.StrictMode>
   );
 });
-
-
